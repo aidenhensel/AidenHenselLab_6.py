@@ -6,8 +6,10 @@ Created on Mon Jul 17 13:45:02 2023
 @author: aidenhensel
 """
 
+
 def menu():
-    print('Menu\n-------------\n1. Encode\n2. Decode\n3. Quit')
+    print('Menu\n-------------\n1. Encode\n2. Decode\n3. Quit\n')
+
 
 def encode(stor):
     password=''
@@ -17,21 +19,37 @@ def encode(stor):
             num -= 10
         password += f'{num}'
     return password
-    
+
+
+def decode(new_pass):
+    dec_pass = ""
+    for i in new_pass:
+        num = int(i) - 3
+        if num < 0:
+            num += 10
+        dec_pass += f'{num}'
+    return dec_pass
+
+
 def main():
+    global new_pass
     i=1
     stor=0
     while i!=0:
         menu()
-        sel=int(input('Please enter an option:'))
+        sel=int(input('Please enter an option: '))
         if sel==1:
-            stor=input('Please enter your password to encode:')
+            stor=input('Please enter your password to encode: ')
             new_pass=encode(stor)
-            print('Your password has been encoded and stored!')
+            print('Your password has been encoded and stored!\n')
+        if sel == 2:
+            dec_pass = decode(new_pass)
+            print(f"The encoded password is {new_pass}, and the original password is {dec_pass}.\n")
         if sel == 3:
             i=0
         if 0>= sel >= 4:
             print('Choose a valid option.')
+
 
 if __name__ == '__main__':
     main()
